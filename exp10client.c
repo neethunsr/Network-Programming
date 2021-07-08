@@ -28,7 +28,7 @@ int main()
 
     if (connect(clientSocket, (struct sockaddr *)&servaddr, sizeof(servaddr)) == -1)
     {
-        printf("[-]Error in connection.\n");
+        printf("Error in connection.\n");
         exit(0);
     }
 
