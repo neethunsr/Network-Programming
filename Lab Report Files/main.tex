@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
+ \usepackage{float}
+ \documentclass[11pt,oneside]{book}
+\usepackage[margin=1.2in]{geometry}
+\usepackage[toc,page]{appendix}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{lipsum}
+\usepackage{caption}
+\usepackage{enumitem}
+
+\begin{document}
+
+\captionsetup[figure]{margin=1.5cm,font=small,labelfont={bf},name={Figure},labelsep=colon,textfont={it}}
+\captionsetup[table]{margin=1.5cm,font=small,labelfont={bf},name={Table},labelsep=colon,textfont={it}}
+\setlipsumdefault{1}
+
+
+\begin{titlepage}
+
+
+% -------------------------------------------------------------------
+% You need to edit the details here
+% -------------------------------------------------------------------
+
+\begin{center}
+{\LARGE College Of Engineering Trivandrum}\\[3cm]
+\linespread{1.2}\huge {\bfseries Network Programming Lab}\\[3cm]
+\linespread{1}
+\includegraphics[width=5cm]{img/logo.jpeg}\\[3cm]
+{\Large Neethu S\\ S5  CSE Roll No:42\\ TVE18CS043 }\\[1cm]
+%{\large \emph{Supervisors:} Vipin Vasu A V ,Thania Kumar , Remya Krishnan}\\ [1cm]% if applicable
+%\large A report submitted in partial fulfilment of FOSS Lab final exam \\in Semester 4\\[0.3cm] 
+\textit{ }\\[2cm]
+Department of Computer Science\\[0.2cm]
+\Large{July 8, 2021}
+\end{center}
+
+\end{titlepage}
+
+\newpage
+
+\begin{frame}
+    \centering
+    \hspace*{-0.5cm}
+    $\vcenter{\hbox{\includegraphics[width=1.75cm]{img/logo.jpeg}}}$
+    $\vcenter{\resizebox{0.95\textwidth}{!}{
+        \begin{tabular}{c}
+             CS334 - Network Programming Lab $\cdot$ 2021 $\cdot$   \\
+             \hline 
+             
+        \end{tabular}
+    }}$
+\end{frame}
+\input{exp12}
+\end{document}
