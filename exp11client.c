@@ -23,12 +23,12 @@ main(int argc, char *argv[])
     char *str_ptr, *buf_ptr, *str;
     if (argc != 3)
     {
-        fprintf(stderr, "Command is :./client address port\n");
+        fprintf(stderr, "Command is :./SMTPclient <address_port>\n");
         exit(1);
     }
     if ((sock_fd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
     {
-        printf("Cannot create socket\n");
+        printf("SOCKET NOT CREATED\n");
         exit(1);
     }
     bzero((char *)&servaddr, sizeof(servaddr));
@@ -46,37 +46,37 @@ main(int argc, char *argv[])
 
     if ((n = recvfrom(sock_fd, buf, MAXLINE, 0, NULL, NULL)) == -1)
     {
-        perror("UDP read error");
+        perror("UDP READ ERROR");
         exit(1);
     }
     buf[n] = '\0';
-    printf("S:%s", buf);
-    sprintf(buf, "HELLO name_of_client_mail_server\n");
+    printf("S: %s", buf);
+    sprintf(buf, "HELO from_client_mail_server\n");
 
     n = sendto(sock_fd, buf, strlen(buf), 0, (struct sockaddr *)&servaddr, sizeof(servaddr));
 
     if ((n = recvfrom(sock_fd, buf, MAXLINE, 0, NULL, NULL)) == -1)
     {
-        perror("UDP read error");
+        perror("UDP READ ERROR");
         exit(1);
     }
     buf[n] = '\0';
-    printf("S:%s", buf);
-    printf("please enter the email address of the sender:");
+    printf("S: %s", buf);
+    printf("\nEnter the email address of the sender: ");
     fgets(address_buf, sizeof(address_buf), stdin);
     address_buf[strlen(address_buf) - 1] = '\0';
 
-    sprintf(buf, "MAIL FROM :<%s>\n", address_buf);
+    sprintf(buf, "MAIL FROM : <%s>\n", address_buf);
 
     sendto(sock_fd, buf, sizeof(buf), 0, (struct sockaddr *)&servaddr, sizeof(servaddr));
     if ((n = recvfrom(sock_fd, buf, MAXLINE, 0, NULL, NULL)) == -1)
     {
-        perror("UDP read error");
+        perror("UDP READ ERROR");
         exit(1);
     }
     buf[n] = '\0';
-    printf("S:%s", buf);
-    printf("please enter the email address of the receiver:");
+    printf("S: %s", buf);
+    printf("Enter the email address of the receiver: ");
     fgets(address_buf, sizeof(address_buf), stdin);
     address_buf[strlen(address_buf) - 1] = '\0';
     sprintf(buf, "RCPT TO : <%s>\n", address_buf);
@@ -87,17 +87,16 @@ main(int argc, char *argv[])
         exit(1);
     }
     buf[n] = '\0';
-    printf("S:%s", buf);
+    printf("S: %s", buf);
     sprintf(buf, "DATA\n");
     sendto(sock_fd, buf, strlen(buf), 0, (struct sockaddr *)&servaddr, sizeof(servaddr));
     if ((n = recvfrom(sock_fd, buf, MAXLINE, 0, NULL, NULL)) == -1)
-
     {
-        perror("UDP read error");
+        perror("UDP READ ERROR");
         exit(1);
     }
     buf[n] = '\0';
-    printf("S:%s", buf);
+    printf("S: %s", buf);
     do
     {
         fgets(message_buf, sizeof(message_buf), stdin);
@@ -113,20 +112,20 @@ main(int argc, char *argv[])
 
     if ((n = recvfrom(sock_fd, buf, MAXLINE, 0, NULL, NULL)) == -1)
     {
-        perror("UDP read error");
+        perror("UDP READ ERROR");
         exit(1);
     }
 
     buf[n] = '\0';
     sprintf(buf, "QUIT\n");
-    printf("S:%s", buf);
+    printf("S: %s", buf);
     sendto(sock_fd, buf, strlen(buf), 0, (struct sockaddr *)&servaddr, sizeof(servaddr));
     if ((n = recvfrom(sock_fd, buf, MAXLINE, 0, NULL, NULL)) == -1)
     {
-        perror("UDP read error");
+        perror("UDP READ ERROR");
         exit(1);
     }
 
     buf[n] = '\0';
-    printf("S:%s", buf);
+    printf("S: %s", buf);
 }
