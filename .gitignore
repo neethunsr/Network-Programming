@@ -5,3 +5,4 @@ server
 a.out
 SMTPclient
 SMTPserver
+spiral.c
